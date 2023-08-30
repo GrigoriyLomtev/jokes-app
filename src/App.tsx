@@ -7,12 +7,6 @@ import axios from "axios";
 import Card from "./components/Card";
 import { apiConfig } from "./apiConfig";
 
-const gridStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-  gap: "0.75rem",
-};
-
 function App() {
   const dispatch = useAppDispatch();
   const { query, results } = useTypedSelector((state) => state.jokes);
@@ -37,12 +31,12 @@ function App() {
   return (
     <div className="container mx-auto my-6 px-0.5 max-w-default">
       <SearchBar />
-      <div style={gridStyle} className="mb-5">
+      <div className="mb-5 grid grid-cols-1 md:grid-cols-2">
         {firstTwoResults.map((item) => (
           <Card key={item.id} item={item} />
         ))}
       </div>
-      <div style={gridStyle}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {remainingResults.map((item) => (
           <Card key={item.id} item={item} />
         ))}
