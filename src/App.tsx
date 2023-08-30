@@ -5,6 +5,7 @@ import { useAppDispatch } from "./store";
 import { setResults } from "./slices/search-slice";
 import axios from "axios";
 import Card from "./components/Card";
+import { apiConfig } from "./apiConfig";
 
 const gridStyle = {
   display: "grid",
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => {
     if (query.length > 3) {
       axios
-        .get(`https://api.chucknorris.io/jokes/search?query=${query}`)
+        .get(`${apiConfig.baseUrl}jokes/search?query=${query}`)
         .then((response) => {
           console.log(response);
           dispatch(setResults(response.data.result));
